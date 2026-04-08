@@ -1,121 +1,325 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nissan Skyline GT-R R32 - El Legado de Godzilla</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap');
-        
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&family=Inter:wght@300;400;600;700&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
+            background-color: #050505;
             color: #e5e5e5;
         }
-        
+
         .font-racing {
             font-family: 'Orbitron', sans-serif;
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #ff4d4d, #f9cb28);
+            background: linear-gradient(90deg, #ff3b3b, #f9cb28);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .car-card {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            background: rgba(26, 26, 26, 0.9);
+            border: 1px solid #2f2f2f;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .car-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: #ff4d4d;
+            box-shadow: 0 10px 30px rgba(255, 77, 77, 0.12);
+        }
+
+        .fade-in {
+            animation: fadeIn 1.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-overlay {
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.88)),
+                radial-gradient(circle at center, rgba(255, 77, 77, 0.08), transparent 45%);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 70%;
+            height: 4px;
+            margin: 10px auto 0;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #dc2626, #facc15);
+        }
+
+        .spec-number {
+            text-shadow: 0 0 15px rgba(255, 77, 77, 0.35);
+        }
+
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.65);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
     </style>
 </head>
-<body class="bg-black">
+<body class="bg-black text-white">
 
-    <!-- Header / Hero Section -->
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
-            <!-- Simulación de imagen de fondo -->
-            <div class="w-full h-full flex items-center justify-center bg-zinc-900">
-                 <span class="text-zinc-800 text-9xl font-bold opacity-20 select-none">SKYLINE</span>
+    <!-- Navbar -->
+    <nav class="glass-nav fixed top-0 left-0 w-full z-50">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="font-racing text-lg md:text-xl tracking-widest">
+                NISSAN <span class="text-red-500">R32</span>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm text-zinc-300">
+                <a href="#inicio" class="hover:text-red-500 transition">Inicio</a>
+                <a href="#especificaciones" class="hover:text-red-500 transition">Especificaciones</a>
+                <a href="#historia" class="hover:text-red-500 transition">Historia</a>
+                <a href="#caracteristicas" class="hover:text-red-500 transition">Características</a>
             </div>
         </div>
+    </nav>
 
-        <div class="relative z-10 text-center px-4">
-            <h1 class="text-6xl md:text-8xl font-racing font-bold mb-4 tracking-tighter">
+    <!-- Hero -->
+    <header id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0">
+            <img
+                src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80"
+                alt="Nissan Skyline GT-R R32"
+                class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 fade-in max-w-5xl">
+            <p class="uppercase tracking-[0.4em] text-zinc-400 text-xs md:text-sm mb-5">
+                JDM Legend • Skyline Heritage • Godzilla
+            </p>
+
+            <h1 class="text-5xl sm:text-6xl md:text-8xl font-racing font-extrabold mb-5 tracking-tight leading-tight">
                 NISSAN <span class="gradient-text">GT-R R32</span>
             </h1>
-            <p class="text-xl md:text-2xl text-gray-400 max-w-2xl mx-auto mb-8 font-light">
-                El nacimiento de una leyenda. El coche que dominó las pistas y se ganó el apodo de <span class="text-red-500 font-bold uppercase italic">Godzilla</span>.
+
+            <p class="text-lg md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 font-light leading-relaxed">
+                El nacimiento de una leyenda. El auto que dominó las pistas, redefinió
+                el rendimiento japonés y se ganó para siempre el apodo de
+                <span class="text-red-500 font-bold uppercase italic">Godzilla</span>.
             </p>
-            <a href="#historia" class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105">
-                Explorar Leyenda
-            </a>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                    href="#historia"
+                    class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-red-600/30"
+                >
+                    Explorar Leyenda
+                </a>
+
+                <a
+                    href="#especificaciones"
+                    class="border border-zinc-500 hover:border-red-500 hover:text-red-400 text-zinc-200 font-semibold py-3 px-8 rounded-full transition-all duration-300"
+                >
+                    Ver Especificaciones
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Specs Section -->
+    <!-- Intro strip -->
+    <section class="py-8 px-6 bg-zinc-950 border-y border-zinc-900">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div>
+                <p class="font-racing text-red-500 text-2xl">1989</p>
+                <p class="text-zinc-400 text-sm mt-1">Año de lanzamiento</p>
+            </div>
+            <div>
+                <p class="font-racing text-red-500 text-2xl">29/29</p>
+                <p class="text-zinc-400 text-sm mt-1">Victorias en JTCC</p>
+            </div>
+            <div>
+                <p class="font-racing text-red-500 text-2xl">AWD</p>
+                <p class="text-zinc-400 text-sm mt-1">Tecnología ATTESA E-TS</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs -->
     <section id="especificaciones" class="py-20 px-6 bg-zinc-950">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-racing text-center mb-16 underline decoration-red-600 underline-offset-8">ESPECIFICACIONES</h2>
-            
+            <h2 class="text-4xl md:text-5xl font-racing text-center mb-16 section-title">
+                ESPECIFICACIONES
+            </h2>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="car-card p-8 rounded-2xl text-center">
-                    <div class="text-red-500 text-4xl mb-4 font-racing">RB26DETT</div>
-                    <h3 class="text-xl font-bold mb-2">Motor</h3>
-                    <p class="text-gray-400">2.6L Biturbo de 6 cilindros en línea, famoso por su resistencia y potencial de tuning.</p>
+                    <div class="text-red-500 text-4xl mb-4 font-racing spec-number">RB26DETT</div>
+                    <h3 class="text-xl font-bold mb-3">Motor</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Propulsor 2.6L biturbo de seis cilindros en línea. Reconocido por su
+                        enorme resistencia, respuesta contundente y legendario potencial de preparación.
+                    </p>
                 </div>
 
                 <div class="car-card p-8 rounded-2xl text-center">
-                    <div class="text-red-500 text-4xl mb-4 font-racing">280 CV</div>
-                    <h3 class="text-xl font-bold mb-2">Potencia</h3>
-                    <p class="text-gray-400">Limitado por el "Acuerdo de Caballeros" en Japón, aunque muchos superaban los 300 CV de fábrica.</p>
+                    <div class="text-red-500 text-4xl mb-4 font-racing spec-number">280 CV</div>
+                    <h3 class="text-xl font-bold mb-3">Potencia</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Oficialmente limitado por el “Acuerdo de Caballeros” en Japón,
+                        aunque muchos ejemplares ofrecían cifras reales superiores desde fábrica.
+                    </p>
                 </div>
 
                 <div class="car-card p-8 rounded-2xl text-center">
-                    <div class="text-red-500 text-4xl mb-4 font-racing">ATTESA E-TS</div>
-                    <h3 class="text-xl font-bold mb-2">Tracción</h3>
-                    <p class="text-gray-400">Sistema inteligente de tracción a las cuatro ruedas que envía potencia al frente solo cuando es necesario.</p>
+                    <div class="text-red-500 text-4xl mb-4 font-racing spec-number">ATTESA E-TS</div>
+                    <h3 class="text-xl font-bold mb-3">Tracción</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Sistema inteligente de tracción integral que distribuye el torque
+                        según la necesidad, logrando máximo agarre y estabilidad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+                <div class="bg-zinc-900 rounded-2xl p-6 text-center border border-zinc-800">
+                    <p class="font-racing text-2xl text-red-500">2.6L</p>
+                    <p class="text-zinc-400 text-sm mt-2">Cilindraje</p>
+                </div>
+                <div class="bg-zinc-900 rounded-2xl p-6 text-center border border-zinc-800">
+                    <p class="font-racing text-2xl text-red-500">6 MT</p>
+                    <p class="text-zinc-400 text-sm mt-2">Caja manual icónica</p>
+                </div>
+                <div class="bg-zinc-900 rounded-2xl p-6 text-center border border-zinc-800">
+                    <p class="font-racing text-2xl text-red-500">Turbo</p>
+                    <p class="text-zinc-400 text-sm mt-2">Doble sobrealimentación</p>
+                </div>
+                <div class="bg-zinc-900 rounded-2xl p-6 text-center border border-zinc-800">
+                    <p class="font-racing text-2xl text-red-500">JDM</p>
+                    <p class="text-zinc-400 text-sm mt-2">Leyenda japonesa</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- History Section -->
-    <section id="historia" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="w-full md:w-1/2">
-                    <h2 class="text-3xl font-racing mb-6">LA HISTORIA DE <span class="text-red-500">GODZILLA</span></h2>
-                    <p class="text-gray-400 leading-relaxed mb-4">
-                        Lanzado en 1989, el R32 fue diseñado con un único propósito: dominar el Grupo A de carreras. Su éxito fue tan absoluto que ganó las 29 carreras en las que participó en el Campeonato Japonés de Turismos.
+    <!-- History -->
+    <section id="historia" class="py-20 px-6 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-racing mb-6">
+                        LA HISTORIA DE <span class="text-red-500">GODZILLA</span>
+                    </h2>
+                    <p class="text-gray-400 leading-relaxed mb-5">
+                        Lanzado en 1989, el Skyline GT-R R32 fue concebido con un objetivo
+                        muy claro: recuperar la supremacía de Nissan en el automovilismo.
+                        Su diseño, su electrónica avanzada y su tren motriz lo convirtieron
+                        en una máquina extremadamente competitiva.
+                    </p>
+                    <p class="text-gray-400 leading-relaxed mb-5">
+                        En el Campeonato Japonés de Turismos logró una racha aplastante,
+                        acumulando victorias que consolidaron su reputación como uno de los
+                        autos más dominantes de su época.
                     </p>
                     <p class="text-gray-400 leading-relaxed">
-                        Fue en Australia donde la prensa, impactada por su superioridad, lo bautizó como <span class="text-white italic">"Godzilla, el monstruo de Japón"</span>. Cambió para siempre la percepción de los coches deportivos japoneses.
+                        Fue la prensa australiana la que, impactada por su superioridad en pista,
+                        lo bautizó como
+                        <span class="text-white italic">“Godzilla, el monstruo de Japón”</span>,
+                        un apodo que terminó convirtiéndose en parte de su leyenda.
                     </p>
                 </div>
-                <div class="w-full md:w-1/2 rounded-2xl overflow-hidden border-2 border-zinc-800">
-                    <div class="aspect-video bg-zinc-800 flex items-center justify-center text-zinc-600 italic">
-                        
-                    </div>
+
+                <div class="rounded-3xl overflow-hidden border border-zinc-800 shadow-2xl">
+                    <img
+                        src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80"
+                        alt="Historia del Nissan Skyline GT-R R32"
+                        class="w-full h-full object-cover"
+                    />
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery / Footer Info -->
-    <footer class="py-10 border-t border-zinc-900 text-center">
-        <div class="font-racing text-2xl mb-4 tracking-widest text-zinc-600">
-            NISSAN / <span class="text-red-900">SKYLINE</span>
+    <!-- Features -->
+    <section id="caracteristicas" class="py-20 px-6 bg-zinc-950">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl md:text-5xl font-racing text-center mb-16 section-title">
+                CARACTERÍSTICAS CLAVE
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
+                    <h3 class="text-red-500 text-2xl font-racing mb-4">Turbo Doble</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Su sistema biturbo entrega una respuesta agresiva y una capacidad de
+                        aceleración que marcó una época en los deportivos japoneses.
+                    </p>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
+                    <h3 class="text-red-500 text-2xl font-racing mb-4">AWD Inteligente</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        La tracción integral ATTESA E-TS permite repartir la fuerza de forma
+                        precisa para ofrecer control, estabilidad y tracción sobresaliente.
+                    </p>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 rounded-2xl p-8">
+                    <h3 class="text-red-500 text-2xl font-racing mb-4">Ícono JDM</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Más que un automóvil, el R32 es una referencia absoluta de la cultura
+                        JDM y una inspiración para generaciones de fanáticos del motor.
+                    </p>
+                </div>
+            </div>
         </div>
-        <p class="text-zinc-500 text-sm">© 2024 Fan Page Proyecto JDM. Para el apasionado de la ingeniería japonesa.</p>
+    </section>
+
+    <!-- Quote section -->
+    <section class="py-20 px-6 bg-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="font-racing text-2xl md:text-4xl text-zinc-200 leading-relaxed">
+                “No fue solo un auto rápido. Fue el momento en que Japón le demostró al mundo
+                que podía construir una leyenda.”
+            </p>
+            <p class="mt-6 text-zinc-500 uppercase tracking-[0.3em] text-sm">
+                Skyline GT-R R32
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 border-t border-zinc-900 text-center bg-zinc-950">
+        <div class="font-racing text-2xl mb-4 tracking-widest text-zinc-300">
+            NISSAN / <span class="text-red-500">SKYLINE</span>
+        </div>
+        <p class="text-zinc-500 text-sm mb-2">
+            Proyecto académico inspirado en la ingeniería automotriz japonesa.
+        </p>
+        <p class="text-zinc-600 text-xs">
+            Desarrollado por Diego Ceron 🚀
+        </p>
     </footer>
 
 </body>
